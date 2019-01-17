@@ -1,0 +1,34 @@
+
+SSEG SEGMENT STACK
+	DB 80H DUP (0)
+SSEG ENDS
+
+DSEG SEGMENT 
+	prompt1 DB 'Enter a character:' , '$'
+	prompt2 DB 0dh,0ah, 'You Entered: ' , '$'
+DSEG ENDS
+
+CSEG SEGMENT 
+	ASSUME SS:SSEG, DS:DSEG,CS:CSEG
+
+BEGIN:
+	MOV AX,DSEG
+	MOV DS,AX
+
+	MOV DX, OFFSET prompt1
+	MOV AH,09H
+	INT 21H
+
+	MOV AH,1
+	INT 21H
+
+	MOV DX, OFFSET prompt2
+	MOV AH,09H
+	INT 21H
+
+	MOV DL,AL
+	MOV AH,2
+	INT 21H
+
+CSEG ENDS
+END BEGIN
