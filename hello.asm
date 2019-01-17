@@ -1,0 +1,19 @@
+SSEG SEGMENT STACK
+     DW 80h dup(0)
+SSEG ENDS
+DSEG SEGMENT
+	message DB 'Hello Piumi','$'
+DSEG ENDS
+CSEG SEGMENT
+	ASSUME SS:SSEG,DS:DSEG,CS:CSEG
+BEGIN:
+	mov ax,dseg
+	mov ds,ax
+
+	MOV DX, OFFSET message
+	MOV AH,09H
+	INT 21H
+	MOV AH,0
+	INT 21h
+CSEG ENDS
+END BEGIN
