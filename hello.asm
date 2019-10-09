@@ -2,7 +2,7 @@ SSEG SEGMENT STACK
      DW 80h dup(0)
 SSEG ENDS
 DSEG SEGMENT
-	message DB 'Hello Piumi','$'
+	message DB 'Hello World','$'
 DSEG ENDS
 CSEG SEGMENT
 	ASSUME SS:SSEG,DS:DSEG,CS:CSEG
